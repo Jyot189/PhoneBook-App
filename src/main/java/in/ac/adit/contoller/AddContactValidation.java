@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.text.html.parser.Parser;
 
 import in.ac.adit.dao.UserDao;
 import in.ac.adit.model.UserContact;
@@ -20,8 +22,13 @@ public class AddContactValidation extends HttpServlet{
 		userContact.setPhoneno(request.getParameter("phoneno"));
 		userContact.setComments(request.getParameter("comments"));
 		
+		
+		//userid
+		HttpSession session = request.getSession();
+		int id=(int)session.getAttribute("id");
+		//int id=Integer.parseInt(sid);
 		UserDao userDaoSaveContact=new UserDao();
-		boolean isValidateUserContact=userDaoSaveContact.saveContact(userContact);
+		boolean isValidateUserContact=userDaoSaveContact.saveContact(userContact,id);
 		if(isValidateUserContact) {
 			RequestDispatcher rd=request.getRequestDispatcher("viewContact.jsp");
 			try {

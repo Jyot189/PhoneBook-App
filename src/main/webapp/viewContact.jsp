@@ -22,8 +22,11 @@
 		<div class="row p-2">
 			
 				<%
+				int id=(int)session.getAttribute("id");
+				
+					//int id=11;
 					UserDao viewContact=new UserDao();
-					List<UserContact> contact=viewContact.getAllContact();
+					List<UserContact> contact=viewContact.getAllContact(id);
 					
 					for(UserContact c:contact ){									
 				%>	

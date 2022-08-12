@@ -65,13 +65,14 @@ public class UserDao {
 			
 		}
 		
-		public boolean saveContact(UserContact userContact) {
+		public boolean saveContact(UserContact userContact,int id) {
 			try {
-				pstmt=connection.prepareStatement("insert into addcontact (name,email,phoneno,comments) values(?,?,?,?)");
-				pstmt.setString(1,userContact.getName());
-				pstmt.setString(2,userContact.getEmail());
-				pstmt.setString(3,userContact.getPhoneno());
-				pstmt.setString(4,userContact.getComments());
+				pstmt=connection.prepareStatement("insert into addcontact (id,name,email,phoneno,comments) values(?,?,?,?,?)");
+				pstmt.setLong(1,id);
+				pstmt.setString(2,userContact.getName());
+				pstmt.setString(3,userContact.getEmail());
+				pstmt.setString(4,userContact.getPhoneno());
+				pstmt.setString(5,userContact.getComments());
 				pstmt.execute();
 				return true;
 			} catch (SQLException e) {
@@ -98,13 +99,32 @@ public class UserDao {
 			return null;
 			
 		}
-				
-		public List<UserContact> getAllContact(){
+		
+		public int userId(User userid) {
+			try {
+				pstmt=connection.prepareStatement("select id from register where email=? AND password=?");
+				pstmt.setString(1,userid.getEmail());
+				pstmt.setString(2,userid.getPassword());
+				ResultSet rs=pstmt.executeQuery();
+				if(rs.next()) {
+					return (int) rs.getLong(1);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return 0;
+			
+		}
+		
+		
+		public List<UserContact> getAllContact(int id){
 			List<UserContact> list=new ArrayList<UserContact>();
 			UserContact contact=null;
 			
 			try {
-				pstmt=connection.prepareStatement("select name,email,phoneno,comments from addcontact");
+				pstmt=connection.prepareStatement("select name,email,phoneno,comments from addcontact where id=?");
+				pstmt.setLong(1, id);
 				ResultSet rs=pstmt.executeQuery();
 				while(rs.next()) {
 					contact=new UserContact();

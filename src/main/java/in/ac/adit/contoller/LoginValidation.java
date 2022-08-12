@@ -22,11 +22,13 @@ public class LoginValidation extends HttpServlet {
 		
 		boolean isValidateUser=userDaoLogin.login(userLogin);
 		String fullname=userDaoLogin.loginUser(userLogin);
-		System.out.println(isValidateUser);
+		int id=userDaoLogin.userId(userLogin);
+		//System.out.println(id);
 		if(isValidateUser) {
 			HttpSession sessionLogin=request.getSession();
 			sessionLogin.setAttribute("checkValidUser","valid");
 			sessionLogin.setAttribute("fullname", fullname);
+			sessionLogin.setAttribute("id", id);
 			RequestDispatcher rd=request.getRequestDispatcher("addContact.jsp");
 			System.out.println("valid");
 			
