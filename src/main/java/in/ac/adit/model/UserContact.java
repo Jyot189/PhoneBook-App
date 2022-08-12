@@ -5,6 +5,7 @@ public class UserContact {
 	private String email;
 	private String phoneno;
 	private String comments;
+	private Long id;
 	public String getName() {
 		return name;
 	}
@@ -28,6 +29,12 @@ public class UserContact {
 	}
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(long l) {
+		this.id = (long) l;
 	}
 	
 }

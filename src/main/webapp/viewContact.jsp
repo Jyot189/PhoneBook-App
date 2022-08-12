@@ -27,7 +27,6 @@
 					//int id=11;
 					UserDao viewContact=new UserDao();
 					List<UserContact> contact=viewContact.getAllContact(id);
-					
 					for(UserContact c:contact ){									
 				%>	
 			<div class="col-md-4 mt-2">
@@ -38,8 +37,8 @@
 						<h5>Email:<%= c.getEmail()%></h5>
 						<h5>About:<%= c.getComments()%></h5>
 						<div class="text-center">
-							<a class="btn btn-success mt-3">Edit</a>
-							<a class="btn btn-danger mt-3">Delete</a>
+							<a href="editContact.jsp?cid_e=<%=c.getId() %>" class="btn btn-success mt-3">Edit</a>
+							<a href="deleteContact.jsp?cid_d=<%=c.getId()%>" class="btn btn-danger mt-3">Delete</a>
 						</div>
 					</div>
 				</div>

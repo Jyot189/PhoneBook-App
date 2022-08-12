@@ -123,15 +123,16 @@ public class UserDao {
 			UserContact contact=null;
 			
 			try {
-				pstmt=connection.prepareStatement("select name,email,phoneno,comments from addcontact where id=?");
+				pstmt=connection.prepareStatement("select a_id,name,email,phoneno,comments from addcontact where id=?");
 				pstmt.setLong(1, id);
 				ResultSet rs=pstmt.executeQuery();
 				while(rs.next()) {
 					contact=new UserContact();
-					contact.setName(rs.getString(1));
-					contact.setEmail(rs.getString(2));
-					contact.setPhoneno(rs.getString(3));
-					contact.setComments(rs.getString(4));
+					contact.setId(rs.getLong(1));
+					contact.setName(rs.getString(2));
+					contact.setEmail(rs.getString(3));
+					contact.setPhoneno(rs.getString(4));
+					contact.setComments(rs.getString(5));
 					list.add(contact);
 				}
 			} catch (SQLException e) {
@@ -141,6 +142,18 @@ public class UserDao {
 			
 			return list;
 		}
+		
+		public boolean deleteContact(int cid_d) {
+			try {
+				pstmt=connection.prepareStatement("delete from addcontact where a_id=?");
+				pstmt.setLong(1, cid_d);
+				pstmt.execute();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;}
 		
 	}
 

@@ -33,4 +33,12 @@
 	  <servlet-name>LogOutValidation</servlet-name>
 	  <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+	  <servlet-name>DeleteContact</servlet-name>
+	  <servlet-class>in.ac.adit.contoller.DeleteContact</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	  <servlet-name>DeleteContact</servlet-name>
+	  <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
 </web-app>
