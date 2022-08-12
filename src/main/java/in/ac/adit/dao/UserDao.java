@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import in.ac.adit.model.User;
 import in.ac.adit.model.UserContact;
@@ -97,7 +98,28 @@ public class UserDao {
 			return null;
 			
 		}
-
+		public List<UserContact> getAllContact(){
+			List<UserContact> list=new ArrayList<UserContact>();
+			UserContact contact=null;
+			
+			try {
+				pstmt=connection.prepareStatement("select name,email,phoneno,comments from addcontact");
+				ResultSet rs=pstmt.executeQuery();
+				while(rs.next()) {
+					contact=new UserContact();
+					contact.setName(rs.getString(1));
+					contact.setEmail(rs.getString(2));
+					contact.setPhoneno(rs.getString(3));
+					contact.setComments(rs.getString(4));
+					list.add(contact);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return list;
+		}
 		
 	}
 

@@ -9,6 +9,12 @@
 </head>
 <body>
 	<%@include file="component/navbar.jsp" %>
+	<%
+		if(checkValidUser==null)
+		{
+			response.sendRedirect("login.jsp");
+		}
+	%>
 	<div class="container-fluid">
 		<div class="row p-2">
 			<div class="col-md-6 offset-md-3">
@@ -22,6 +28,7 @@
 								out.println(error);
 							}
 						%>
+						
 							  <div class="form-group">
 							    <label for="exampleInputEmail1">Enter Name</label>
 							    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" required>
