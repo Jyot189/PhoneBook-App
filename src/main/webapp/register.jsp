@@ -19,24 +19,25 @@
 						<%
 							String error=(String)request.getAttribute("error");
 							if(error!=null){
-								out.println(error);
-							}
+								%>
+								<p class="text-center text-danger"><%= error %></p>
+							<%}
 						%>
 							  <div class="form-group">
 							    <label for="exampleInputEmail1">Enter Name</label>
-							    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fullname">
+							    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fullname" required>
 							  </div>
 							  <div class="form-group">
 							    <label for="exampleInputEmail1">Email address</label>
-							    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+							    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
 							  </div>
 							  <div class="form-group">
 							    <label for="exampleInputPassword1">Password</label>
-							    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+							    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
 							  </div>
 							  <div class="form-group">
 							    <label for="exampleInputPassword1">Confirm Password</label>
-							    <input type="password" class="form-control" id="exampleInputPassword1" name="cpassword">
+							    <input type="password" class="form-control" id="exampleInputPassword1" name="cpassword" required>
 							  </div>
 							  <div class="text-center mt-2">
 								  <button type="submit" class="btn btn-primary">Register</button>

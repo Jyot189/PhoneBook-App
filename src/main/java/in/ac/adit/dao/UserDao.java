@@ -98,6 +98,7 @@ public class UserDao {
 			return null;
 			
 		}
+				
 		public List<UserContact> getAllContact(){
 			List<UserContact> list=new ArrayList<UserContact>();
 			UserContact contact=null;

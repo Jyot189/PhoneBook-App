@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>viewContact</title>
 <%@include file="component/allCss.jsp" %>
 </head>
 <body>
@@ -27,16 +27,16 @@
 					
 					for(UserContact c:contact ){									
 				%>	
-			<div class="col-md-3">
+			<div class="col-md-4 mt-2">
 				<div class="card">
-					<div class="card-body">
+					<div class="card-body" style="height:230px;">
 						<h5>Name:<%= c.getName()%></h5>
 						<h5>Ph no:<%= c.getPhoneno()%></h5>
 						<h5>Email:<%= c.getEmail()%></h5>
 						<h5>About:<%= c.getComments()%></h5>
-						<div>
-							<a class="btn btn-success">Edit</a>
-							<a class="btn btn-danger">Delete</a>
+						<div class="text-center">
+							<a class="btn btn-success mt-3">Edit</a>
+							<a class="btn btn-danger mt-3">Delete</a>
 						</div>
 					</div>
 				</div>

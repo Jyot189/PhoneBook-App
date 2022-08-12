@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>addContact</title>
 <%@include file="component/allCss.jsp" %>
 </head>
 <body>
@@ -25,8 +25,9 @@
 						<% 
 							String error=(String)request.getAttribute("error");
 							if(error!=null){
-								out.println(error);
-							}
+								%>
+								<p class="text-center text-danger"><%= error %></p>
+							<%}
 						%>
 						
 							  <div class="form-group">

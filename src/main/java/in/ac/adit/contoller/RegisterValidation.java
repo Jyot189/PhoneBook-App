@@ -49,7 +49,7 @@ public class RegisterValidation extends HttpServlet {
 				}
 			}
 		}else {
-			request.setAttribute("error","invalid name | password");
+			request.setAttribute("error","invalid name | email |password");
 			RequestDispatcher rd=request.getRequestDispatcher("register.jsp");
 			try {
 				rd.forward(request,response);
