@@ -142,6 +142,45 @@ public class UserDao {
 			
 			return list;
 		}
+		public UserContact getDeatilById(int get_id) {
+			try {
+				pstmt=connection.prepareStatement("select name,email,phoneno,comments from addcontact where a_id=?");
+				pstmt.setLong(1, get_id);
+				ResultSet rs=pstmt.executeQuery();
+				if(rs.next()) {
+					UserContact userDeatilById=new UserContact();
+					userDeatilById.setName(rs.getString(1));
+					userDeatilById.setEmail(rs.getString(2));
+					userDeatilById.setPhoneno(rs.getString(3));
+					userDeatilById.setComments(rs.getString(4));
+					return userDeatilById;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+			
+		}
+		
+		public boolean updateContact(UserContact updateContact) {
+			try {
+				pstmt=connection.prepareStatement("update addcontact set name=? ,email=?,phoneno=?,comments=? where a_id=?");
+				pstmt.setString(1,updateContact.getName());
+				pstmt.setString(2,updateContact.getEmail());
+				pstmt.setString(3,updateContact.getPhoneno());
+				pstmt.setString(4,updateContact.getComments());
+				pstmt.setLong(5,updateContact.getId());
+				pstmt.executeUpdate();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return false;
+			
+		}
 		
 		public boolean deleteContact(int cid_d) {
 			try {

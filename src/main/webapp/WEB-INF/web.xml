@@ -41,4 +41,12 @@
 	  <servlet-name>DeleteContact</servlet-name>
 	  <url-pattern>/delete</url-pattern>
   </servlet-mapping>
+  <servlet>
+	  <servlet-name>EditContact</servlet-name>
+	  <servlet-class>in.ac.adit.contoller.EditContact</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	  <servlet-name>EditContact</servlet-name>
+	  <url-pattern>/update</url-pattern>
+  </servlet-mapping>
 </web-app>

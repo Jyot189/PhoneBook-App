@@ -16,36 +16,38 @@
 		if(checkValidUser==null)
 		{
 			response.sendRedirect("login.jsp");
-		}
-	%>
-	<div class="container mt-2">
-		<div class="row p-2">
-			
-				<%
-				int id=(int)session.getAttribute("id");
-				
-					//int id=11;
-					UserDao viewContact=new UserDao();
-					List<UserContact> contact=viewContact.getAllContact(id);
-					for(UserContact c:contact ){									
-				%>	
-			<div class="col-md-4 mt-2">
-				<div class="card">
-					<div class="card-body" style="height:230px;">
-						<h5>Name:<%= c.getName()%></h5>
-						<h5>Ph no:<%= c.getPhoneno()%></h5>
-						<h5>Email:<%= c.getEmail()%></h5>
-						<h5>About:<%= c.getComments()%></h5>
-						<div class="text-center">
-							<a href="editContact.jsp?cid_e=<%=c.getId() %>" class="btn btn-success mt-3">Edit</a>
-							<a href="deleteContact.jsp?cid_d=<%=c.getId()%>" class="btn btn-danger mt-3">Delete</a>
+		}else{
+			%>
+			<div class="container mt-2">
+					<div class="row p-2">			
+							<%
+								int id=(int)session.getAttribute("id");
+							
+								//int id=11;
+								UserDao viewContact=new UserDao();
+								List<UserContact> contact=viewContact.getAllContact(id);
+								for(UserContact c:contact ){									
+							%>	
+						<div class="col-md-4 mt-2">
+							<div class="card">
+								<div class="card-body" style="height:230px;">
+									<h5>Name:<%= c.getName()%></h5>
+									<h5>Ph no:<%= c.getPhoneno()%></h5>
+									<h5>Email:<%= c.getEmail()%></h5>
+									<h5>About:<%= c.getComments()%></h5>
+									<div class="text-center">
+										<a href="editContact.jsp?cid_e=<%=c.getId() %>" class="btn btn-success mt-3">Edit</a>
+										<a href="deleteContact.jsp?cid_d=<%=c.getId()%>" class="btn btn-danger mt-3">Delete</a>
+									</div>
+								</div>
+							</div>
+							</div>
+							<%} %>
 						</div>
-					</div>
-				</div>
-				</div>
-				<%} %>
-			</div>
+				
+			  </div>
+		<%}
+	%>
 	
-  </div>
 </body>
 </html>
