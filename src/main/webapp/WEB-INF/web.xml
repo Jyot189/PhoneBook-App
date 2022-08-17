@@ -49,4 +49,12 @@
 	  <servlet-name>EditContact</servlet-name>
 	  <url-pattern>/update</url-pattern>
   </servlet-mapping>
+  <servlet>
+	  <servlet-name>UpdatePassword</servlet-name>
+	  <servlet-class>in.ac.adit.contoller.UpdatePassword</servlet-class>
+	  </servlet>
+  <servlet-mapping>
+	  <servlet-name>UpdatePassword</servlet-name>
+	  <url-pattern>/updatePassword</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -19,8 +19,20 @@
 </head>
 <body>
 	<%@include file="component/navbar.jsp" %>
+	<% String errormessage=(String)session.getAttribute("errorMessage1"); %>
+	<%
+		if(errormessage!=null){%>
+		<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+		  <strong><%= errormessage%></strong> 
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<%}
+	%>
+	
 	<div class="container-fluid back-img text-center text-success">
-	<h1 class="mt-2">Welcome to PhoneBook-App</h1>
+		<h1 class="mt-2">Welcome to PhoneBook-App</h1>
 	</div>
 	<%@include file="component/footer.jsp" %>
 </body>

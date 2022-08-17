@@ -32,11 +32,10 @@ public class UserDao {
 		
 		public boolean register(User userRegister) {
 			try {
-				pstmt=connection.prepareStatement("insert into register (fullname,email,password,cpassword) values(?,?,?,?)");
+				pstmt=connection.prepareStatement("insert into register (fullname,email,password) values(?,?,?)");
 				pstmt.setString(1,userRegister.getFullname());
 				pstmt.setString(2,userRegister.getEmail());
 				pstmt.setString(3,userRegister.getPassword());
-				pstmt.setString(4,userRegister.getCpassword());
 				pstmt.execute();
 				return true;
 			} catch (SQLException e) {
@@ -192,8 +191,38 @@ public class UserDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return false;}
+			return false;
+		}
 		
+		public boolean isPassword(String password,int id) {
+			try {
+				pstmt=connection.prepareStatement("select password from register where password=? and id=?");
+				pstmt.setString(1, password);
+				pstmt.setLong(2, id);
+				ResultSet rs=pstmt.executeQuery();
+				if(rs.next()) {
+					return true;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+			
+		}
+		
+		public boolean UpdatePassword(String newpassword,int id) {
+			try {
+				pstmt=connection.prepareStatement("update register set password=? where id=?");
+				pstmt.setString(1, newpassword);
+				pstmt.setLong(2, id);
+				pstmt.executeUpdate();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;}
 	}
 
 

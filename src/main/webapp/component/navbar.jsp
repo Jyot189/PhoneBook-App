@@ -22,13 +22,14 @@
     	if(checkValidUser==null){%>
     		<form class="form-inline my-2 my-lg-0">
     		<a href="login.jsp" class="btn btn-success">Login</a>
-      		<a href="register.jsp" class="btn btn-danger ml-2">Register</a>
+      		<a href="register.jsp" class="btn btn-danger ml-2">Register</a>      		
       		</form>
     	<%
     	}else{
     		%>    		     		
       		<form class="form-inline my-2 my-lg-0">
     		<button class="btn btn-success"><%String name=(String)session.getAttribute("fullname");out.println(name); %></button>
+    		<a href="updatePassword.jsp" class="btn btn-info ml-2">UpdatePassword</a>
       		<a href="logout" class="btn btn-danger ml-2">Logout</a>
       	</form>
     	<%}
