@@ -16,10 +16,13 @@ import in.ac.adit.model.UserContact;
 public class AddContactValidation extends HttpServlet{
 	public void service(HttpServletRequest request,HttpServletResponse response) {
 		response.setContentType("text/html");
+		String phoneno=request.getParameter("phoneno");
+		boolean isValidateUserContact=false;
+		
 		UserContact userContact=new UserContact();
 		userContact.setName(request.getParameter("name"));
 		userContact.setEmail(request.getParameter("email"));
-		userContact.setPhoneno(request.getParameter("phoneno"));
+		userContact.setPhoneno(phoneno);
 		userContact.setComments(request.getParameter("comments"));
 		
 		
@@ -28,8 +31,24 @@ public class AddContactValidation extends HttpServlet{
 		int id=(int)session.getAttribute("id");
 		//int id=Integer.parseInt(sid);
 		UserDao userDaoSaveContact=new UserDao();
-		boolean isValidateUserContact=userDaoSaveContact.saveContact(userContact,id);
-		if(isValidateUserContact) {
+		boolean isExit=userDaoSaveContact.isOneIdContact(id,phoneno);
+		if((phoneno.length()==10)&& (isExit)) {
+			isValidateUserContact=userDaoSaveContact.saveContact(userContact,id);
+			
+		}else {
+			request.setAttribute("error","Phone no is not valid");
+			RequestDispatcher rd=request.getRequestDispatcher("addContact.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(isValidateUserContact){
 			RequestDispatcher rd=request.getRequestDispatcher("viewContact.jsp");
 			try {
 				rd.forward(request, response);

@@ -11,7 +11,7 @@ import java.util.List;
 import in.ac.adit.model.User;
 import in.ac.adit.model.UserContact;
 
-public class UserDao {
+public class UserDao implements UserDaoInterface{
 		final static String URL="jdbc:mysql://localhost:3306/phonebook_db";
 		final static String USERNAME="root";
 		final static String PASSWORD="";
@@ -223,6 +223,30 @@ public class UserDao {
 				e.printStackTrace();
 			}
 			return false;}
+		
+		public boolean isOneIdContact(int id,String phoneno) {
+			int count=0;
+			try {
+				pstmt=connection.prepareStatement("select phoneno from addcontact where id=? and phoneno=?");
+				pstmt.setLong(1, id);
+				pstmt.setString(2, phoneno);
+				ResultSet rs=pstmt.executeQuery();
+				while(rs.next()) {
+					count++;
+				}
+				if(count>0) {
+					return false;
+				}else {
+					return true;
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			return false;
+			
+		}
 	}
 
 
