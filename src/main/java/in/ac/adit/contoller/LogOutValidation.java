@@ -15,6 +15,7 @@ public class LogOutValidation extends HttpServlet {
 		session.removeAttribute("checkValidUser");
 		session.removeAttribute("fullname");
 		session.removeAttribute("id");
+		session. invalidate();
 		request.setAttribute("errormsg", "logout successfully... ");
 		RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
 		try {
